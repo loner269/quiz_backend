@@ -9,6 +9,7 @@ import userRoutes from './route/userRoute.js';
 import questionRoutes from './route/questionRoutes.js';
 import resultRoutes from './route/resultRoutes.js';
 import leaderboardRoutes from './route/leaderboardRoutes.js'
+import adminRoutes from './route/adminRoutes.js';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/users', userRoutes);
 app.use('/api/questions', questionRoutes)
+app.use('api/admin/questions',adminRoutes) 
 app.use('/api/results', resultRoutes)
 app.use('/api/leaderboard', leaderboardRoutes)
 

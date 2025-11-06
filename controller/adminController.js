@@ -2,10 +2,10 @@ import Question from "../models/QuestionModel.js";
 
 export const addQuestion = async (req, res) => {
   try {
-    const { questionText, options, correctAnswer, difficulty, category } =
+    const { question, options, correctAnswer, difficulty, category } =
       req.body;
     const newQuestion = new Question({
-      questionText,
+      question,
       options,
       correctAnswer,
       difficulty,
@@ -30,11 +30,11 @@ export const deleteQuestion = async (req, res) => {
 export const updateQuestion = async (req, res) => {
   try {
     const { id } = req.params;
-    const { questionText, options, correctAnswer, difficulty, category } =
+    const { question, options, correctAnswer, difficulty, category } =
       req.body;
     const updatedQuestion = await Question.findByIdAndUpdate(
       id,
-      { questionText, options, correctAnswer, difficulty, category },
+      { question, options, correctAnswer, difficulty, category },
       { new: true }
     );
     res.status(200).json(updatedQuestion);

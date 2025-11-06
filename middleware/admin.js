@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../model/UserModel.js";
+import User from "../models/UserModel.js";
 const admin = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];

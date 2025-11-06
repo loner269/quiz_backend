@@ -33,19 +33,19 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({
+        const user = new User({
             username,
             name,
             email,
             password: hashedPassword,
         });
-        await newUser.save();
-        // res.status(201).json({ message: 'User registered successfully' });
+        await user.save();
    res.status(201).json({
     message: 'User registered successfully',
      _id: user._id,
      username: user.username,
      email: user.email,
+     role: user.role,
      token: generateToken(User._id),
    });
 
@@ -99,4 +99,18 @@ export const adminRegister = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
+};
+
+export const autoLogin = async (req, res) => {
+  try {
+    if (!req.user) return res.status(401).json({ message: "Unauthorized" });
+
+    res.json({
+      _id: req.user._id,
+      username: req.user.username,
+      email: req.user.email,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
 };

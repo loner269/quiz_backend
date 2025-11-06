@@ -49,7 +49,7 @@ export const getLeaderboardWithUserRank = async (req, res) => {
       score: Math.round(entry.score),
     }));
 
-    // --- USER RANK SECTION ---
+    
     let userRankInfo = null;
     if (userId) {
       const userRankIndex = leaderboard.findIndex(
